@@ -1,0 +1,11 @@
+@font-face {
+  font-family: Lato;
+  src: 
+    url(./assets/fonts/Lato-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: Lato, Arial, Helvetica, sans-serif;
+}

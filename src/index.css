@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.menu li > *:not(ul):not(.menu-title):not(details):active {
+  @apply bg-transparent;
+  @apply hover:bg-transparent;
+}
