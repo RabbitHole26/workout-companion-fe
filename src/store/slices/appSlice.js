@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
   theme: localStorage.getItem('theme') || 'light',
-  savedAvatarUrl: localStorage.getItem('savedAvatarUrl') || null,
   appError: null,
   appSuccess: '',
   appLoading: false
@@ -21,10 +20,6 @@ export const appSlice = createSlice({
       localStorage.setItem('theme', state.theme)
       setHtmlDataTheme(state.theme)
     },
-    set_saved_avatar_url: (state, action) => {
-      state.savedAvatarUrl = action.payload
-      localStorage.setItem('savedAvatarUrl', state.savedAvatarUrl)
-    },
     set_app_error: (state, action) => {
       state.appError = action.payload
     },
@@ -40,7 +35,6 @@ export const appSlice = createSlice({
 // export action creators for use in components
 export const {
   set_theme,
-  set_saved_avatar_url,
   set_app_error,
   set_app_success,
   set_app_loading

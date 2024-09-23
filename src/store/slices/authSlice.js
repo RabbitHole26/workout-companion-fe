@@ -32,6 +32,13 @@ export const authSlice = createSlice({
       localStorage.setItem('userData', JSON.stringify(action.payload))
       state.userData = action.payload
     },
+    set_user_avatar: (state, action) => {
+      localStorage.setItem('userData', JSON.stringify({
+        avatarUrl: action.payload,
+        username: state.userData.username
+      }))
+      state.userData.avatarUrl = action.payload
+    },
     use_logout: state => {
       localStorage.removeItem('userData')
       state.userData = null
@@ -47,6 +54,7 @@ export const authSlice = createSlice({
 // export action creators for use in components
 export const {
   set_user_data,
+  set_user_avatar,
   use_logout,
   set_access_token
 } = authSlice.actions
