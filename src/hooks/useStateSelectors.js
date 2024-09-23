@@ -5,7 +5,6 @@ const useStateSelectors = () => {
   // app
   const theme = useSelector(state => state.app.theme)
   const isLightMode = theme === 'light'
-  const savedAvatarUrl = useSelector(state => state.app.savedAvatarUrl)
   const appError = useSelector(state => state.app.appError)
   const appSuccess = useSelector(state => state.app.appSuccess)
   const appLoading = useSelector(state => state.app.appLoading)
@@ -36,7 +35,6 @@ const useStateSelectors = () => {
 
   return {
     isLightMode,
-    savedAvatarUrl,
     appError,
     appSuccess,
     appLoading,
