@@ -37,7 +37,6 @@ const useUploadAvatar = () => {
     } catch (error) {
       printLogInDevMode('avatarErr: ', error)
       const errorMessage = error.response.data.error
-      console.log(errorMessage)
       dispatch(set_app_error(errorMessage))
     } finally {
       dispatch(set_app_loading(false))

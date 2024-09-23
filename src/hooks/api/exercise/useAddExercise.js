@@ -25,8 +25,6 @@ const useAddExercise = () => {
     dispatch(set_app_loading(true))
 
     try {
-      console.log('accessTokenInAddExercise: ', accessToken)
-
       const res = await axiosInstance({
         url: '/exercise/add-new-exercise',
         method: 'post',

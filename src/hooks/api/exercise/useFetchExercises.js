@@ -19,8 +19,6 @@ const useFetchExercises = () => {
 
   const fetchExercises = async () => {
     try {
-      console.log('accessTokenInFetchExercises: ', accessToken)
-
       const res = await axiosInstance({
         url: '/exercise/',
         method: 'get',
