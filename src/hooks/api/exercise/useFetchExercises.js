@@ -18,6 +18,8 @@ const useFetchExercises = () => {
   const {axiosInstance} = useAxiosInstance()
 
   const fetchExercises = async () => {
+    dispatch(set_home_loading(true))
+
     try {
       const res = await axiosInstance({
         url: '/exercise/',
