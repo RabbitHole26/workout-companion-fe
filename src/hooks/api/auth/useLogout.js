@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 
 // reducer
 import { use_logout } from "../../../store/slices/authSlice"
-import { set_app_success, set_saved_avatar_url } from "../../../store/slices/appSlice"
+import { set_app_success } from "../../../store/slices/appSlice"
 import { set_exercise_array } from "../../../store/slices/exerciseSlice"
 
 // hook
@@ -28,7 +28,6 @@ const useLogout = () => {
       if (res.status === 204) {
         dispatch(use_logout())
         dispatch(set_exercise_array([]))
-        dispatch(set_saved_avatar_url(null))
         dispatch(set_app_success(`You've logged out`))
       }
     } catch (error) {

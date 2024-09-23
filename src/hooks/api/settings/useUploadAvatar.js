@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux"
 
 // reducer
-import { set_app_error, set_app_loading, set_app_success, set_saved_avatar_url } from "../../../store/slices/appSlice"
+import { set_app_error, set_app_loading, set_app_success } from "../../../store/slices/appSlice"
+import { set_user_avatar } from "../../../store/slices/authSlice"
 
 // hook
 import useStateSelectors from "../../useStateSelectors"
@@ -30,7 +31,7 @@ const useUploadAvatar = () => {
       printLogInDevMode('avatarRes: ', res)
   
       if (res.status === 200) {
-        dispatch(set_saved_avatar_url(res.data.url))
+        dispatch(set_user_avatar(res.data))
         dispatch(set_app_success('Avatar uploaded!'))
       }
   
