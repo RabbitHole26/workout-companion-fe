@@ -11,7 +11,7 @@ import SuccessBanner from '../components/banners/success-banner/SuccessBanner'
 import ShowExerciseFormButton from '../components/buttons/ShowExerciseFormButton'
 
 const AppLayout = ({children}) => {
-  const {appError, appSuccess, userData} = useStateSelectors()
+  const {appError, appSuccess, homeLoading, userData} = useStateSelectors()
   const location = useLocation()
   
   return (
@@ -29,7 +29,7 @@ const AppLayout = ({children}) => {
         {children}
       </div>
       <>
-        {isMobile && userData && location.pathname === '/' &&
+        {isMobile && !homeLoading && userData && location.pathname === '/' &&
           <div className='sticky bottom-6 flex justify-end mt-6 mr-6'>
             <ShowExerciseFormButton />
           </div>
