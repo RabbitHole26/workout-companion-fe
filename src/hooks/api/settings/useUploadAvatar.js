@@ -16,7 +16,7 @@ const useUploadAvatar = () => {
   const {accessToken} = useStateSelectors()
   const {axiosInstance} = useAxiosInstance()
 
-  const uploadAvatar = async (formData) => {
+  const uploadAvatar = async (formData, setFile) => {
     try {
       const res = await axiosInstance({
         method: 'post',
@@ -33,6 +33,8 @@ const useUploadAvatar = () => {
       if (res.status === 200) {
         dispatch(set_user_avatar(res.data))
         dispatch(set_app_success('Avatar uploaded!'))
+        setFile(null)
+        document.querySelector('input[type="file"]').value = '' // clear image input field value immediately after successful upload
       }
   
     } catch (error) {
