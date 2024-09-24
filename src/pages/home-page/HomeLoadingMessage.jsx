@@ -4,7 +4,7 @@ import classNames from "classnames"
 const HomeLoadingMessage = () => {
   const wrapperClass = classNames('flex flex-col items-center justify-center gap-2 text-2xl', {
     'h-custom-max-mobile': isMobile,
-    'h-custom-max-desktop-mobile-lg': !isMobile
+    'h-custom-max-mobile lg:h-custom-max-desktop-mobile-lg': !isMobile
   })
 
   return (

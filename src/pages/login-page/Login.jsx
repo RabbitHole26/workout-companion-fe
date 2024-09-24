@@ -12,6 +12,7 @@ import useLogin from "../../hooks/api/auth/useLogin"
 
 // component
 import SubmitFormButton from "../../components/buttons/SubmitFormButton"
+import PageLink from "../../components/page-link/PageLink"
 
 
 const Login = () => {
@@ -25,9 +26,9 @@ const Login = () => {
     'h-custom-max-mobile lg:h-custom-max-desktop-mobile-lg': isMobile
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    login()
+    await login()
   }
 
   return (
@@ -64,8 +65,10 @@ const Login = () => {
         </div>
 
         {/* SUBMIT BUTTON */}
-        <div className="flex justify-center mt-12 mb-5">
+        <div className="flex flex-col items-center gap-5 mt-12 mb-5">
           <SubmitFormButton label='Log in' />
+          <PageLink to='/forgot-password' label='Forgot password' className='justify-normal' />
+          <PageLink to='/signup' label='Sign up' className='justify-normal' />
         </div>
       </form>
     </div>

@@ -22,11 +22,11 @@ const Home = () => {
     // 'bg-red-300': ENV_MODE === 'dev'
   })
 
-  const exerciseListWrapper = classNames('px-2 pb-2', {
+  const exerciseListWrapperClass = classNames('px-2 pb-2', {
     'pt-2': isMobile && !displayForm,
   })
 
-  const exerciseFormWrapper = classNames('px-2 sticky top-[64px] w-full z-[1]', {
+  const exerciseFormWrapperClass = classNames('px-2 sticky top-[64px] w-full z-[1]', {
     'pt-2': isMobile && displayForm
   })
 
@@ -45,7 +45,7 @@ const Home = () => {
       <>
         {!homeLoading && userData &&
           <>
-            <div className={exerciseFormWrapper}>
+            <div className={exerciseFormWrapperClass}>
               <>
                 {!isMobile && userData &&
                   <ShowExerciseFormButton />
@@ -63,7 +63,7 @@ const Home = () => {
                     <EmptyExerciseListMessage />
                   )
                 : (
-                    <div className={exerciseListWrapper}>
+                    <div className={exerciseListWrapperClass}>
                       <ExerciseList />
                     </div>
                   )

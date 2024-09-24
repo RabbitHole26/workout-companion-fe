@@ -12,6 +12,7 @@ import useSignup from "../../hooks/api/auth/useSignup"
 
 // component
 import SubmitFormButton from "../../components/buttons/SubmitFormButton"
+import PageLink from "../../components/page-link/PageLink"
 
 const Signup = () => {
   const dispatch = useDispatch()
@@ -24,9 +25,9 @@ const Signup = () => {
     'h-custom-max-mobile lg:h-custom-max-desktop-mobile-lg': isMobile
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    signup()
+    await signup()
   }
 
   return (
@@ -86,10 +87,13 @@ const Signup = () => {
           />
         </div>
 
+        {/* SUBMIT BUTTON */}
         <div className="flex justify-center mt-12 mb-5">
           <SubmitFormButton label='Sign up' />
         </div>
       </form>
+
+      <PageLink to='/login' label='Log in' />
     </div>
   )
 }
