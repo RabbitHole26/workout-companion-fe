@@ -11,6 +11,8 @@ import AppLayout from './layout/AppLayout'
 import Home from './pages/home-page/Home'
 import Signup from './pages/signup-page/Signup'
 import Login from './pages/login-page/Login'
+import ForgotPassword from './pages/forgot-password-page/ForgotPassword'
+import PasswordReset from './pages/password-reset/PasswordReset'
 import Settings from './pages/settings-page/Settings'
 
 function App() {
@@ -23,22 +25,26 @@ function App() {
           <Route
             path='/'
             element={userData ? <Home /> : <Navigate to='/login'/>}
-            // element={<Home />}
           />
           <Route
             path='/signup'
             element={!userData ? <Signup /> : <Navigate to='/' />}
-            // element={<Signup />}
           />
           <Route
             path='/login'
             element={!userData ? <Login /> : <Navigate to='/' />}
-            // element={<Login />}
+          />
+          <Route 
+            path='/forgot-password'
+            element={!userData ? <ForgotPassword /> : <Navigate to='/' />}
+          />
+          <Route 
+            path='/password-reset'
+            element={!userData ? <PasswordReset /> : <Navigate to='/' />}
           />
           <Route
             path='/settings'
             element={userData ? <Settings /> : <Navigate to='/login' />}
-            // element={<Settings />}
           />
         </Routes>
       </AppLayout>
