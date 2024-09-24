@@ -19,7 +19,7 @@ const ShowExerciseFormButton = () => {
   const {isLightMode, displayForm} = useStateSelectors()
   const {clearExerciseFormFields} = useClearExerciseFormFields()
 
-  const buttonWrapper = classNames('', {
+  const btnWrapperClass = classNames('', {
     'pt-2 pb-2': !isMobile
   })
 
@@ -35,7 +35,7 @@ const ShowExerciseFormButton = () => {
   }
 
   return (
-    <div className={buttonWrapper}>
+    <div className={btnWrapperClass}>
       <>
         {isMobile &&
           <button

@@ -34,7 +34,7 @@ const UploadAvatar = () => {
     const formData = new FormData()
     formData.append('avatar', file)
 
-    await uploadAvatar(formData)
+    await uploadAvatar(formData, setFile)
   }
   
   const handleChange = (e) => {

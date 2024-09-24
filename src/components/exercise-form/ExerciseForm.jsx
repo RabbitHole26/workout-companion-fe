@@ -30,11 +30,11 @@ const ExerciseForm = () => {
     'bg-neutral-600': !isLightMode
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     editExerciseForm
-      ? updateExercise()
-      : addExercise()
+      ? await updateExercise()
+      : await addExercise()
   }
 
   return (
