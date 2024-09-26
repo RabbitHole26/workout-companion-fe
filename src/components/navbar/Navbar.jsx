@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
@@ -8,12 +8,14 @@ import useStateSelectors from "../../hooks/useStateSelectors"
 // component
 import ThemeToggler from "./ThemeToggler"
 import Emoji from "../emoji/Emoji"
-import Avatar from "./avatar/Avatar"
+import Avatar from "./Avatar"
 import UserList from "./lists/UserList"
 import GuestList from "./lists/GuestList"
+import Search from "./Search"
 
 const Navbar = () => {
 const {isLightMode, userData} = useStateSelectors()
+const location = useLocation()
 
   const navWrapperClass = classNames('sticky top-0 flex flex-row justify-between items-center p-2 z-[2]', {
     'bg-neutral-300': isLightMode,
@@ -59,28 +61,35 @@ const {isLightMode, userData} = useStateSelectors()
         </h1>
       </Link>
 
-      {/* DROPDOWN */}
-      <div className="dropdown dropdown-end">
-        <div 
-          tabIndex={0} 
-          role="button" 
-          className="btn btn-ghost btn-circle flex items-center avatar"
-        >
-          <Avatar />
+      <div className="flex items-center gap-2">
+        {/* SEARCH */}
+        <>
+          {userData && location.pathname === '/' &&
+            <Search />
+          }
+        </>
+        {/* DROPDOWN */}
+        <div className="dropdown dropdown-end">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle flex items-center avatar"
+          >
+            <Avatar />
+          </div>
+          {/* DROPDOWN ITEMS */}
+          <ul tabIndex={0} className={ulClass}>
+            <li>
+              <ThemeToggler />
+            </li>
+            <>
+              {userData
+                ? <UserList />
+                : <GuestList />
+              }
+            </>
+          </ul>
         </div>
-
-        {/* LIST ITEMS */}
-        <ul tabIndex={0} className={ulClass}>
-          <li>
-            <ThemeToggler />
-          </li>
-          <>
-            {userData
-              ? <UserList />
-              : <GuestList />
-            }
-          </>
-        </ul>
       </div>
     </header>
   )
