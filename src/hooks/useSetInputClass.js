@@ -10,10 +10,16 @@ const useSetInputClass = () => {
   const {appError} = useStateSelectors()
 
   const setInputClass = (field) => {
-    return classNames('rounded-md p-2 shadow-md border-2', {
-      'border-transparent': !isArray(appError) || !appError.some(e => e.path === field),
-      'border-red-500': isArray(appError) && appError.some(e => e.path === field)
-    })
+    return field
+      ? (
+          classNames('rounded-md p-2 shadow-md border-2', {
+            'border-transparent': field && !isArray(appError) || !appError.some(e => e.path === field),
+            'border-red-500': field && isArray(appError) && appError.some(e => e.path === field)
+          })
+        )
+      : (
+          'rounded-md p-2 w-24 pl-8 md:w-auto'
+        )
   }
 
   return {setInputClass}
