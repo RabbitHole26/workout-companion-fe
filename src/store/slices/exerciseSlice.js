@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
   exerciseArray: [],
   exerciseId: '',
-  exerciseLoading: false
+  // exerciseLoading: false
 }
 
 export const exerciseSlice = createSlice({
@@ -11,13 +11,21 @@ export const exerciseSlice = createSlice({
   initialState,
   reducers: {
     set_exercise_array: (state, action) => {
-      state.exerciseArray = action.payload
+      const arr = action.payload
+
+      if (arr.length > 0) {
+        const insertLoading = arr.map(e => e = {...e, loading: false}) // add loading prop to each item in the array
+        state.exerciseArray = insertLoading
+      }
     },
     set_exercise_id: (state, action) => {
       state.exerciseId = action.payload
     },
     set_exercise_loading: (state, action) => {
-      state.exerciseLoading = action.payload
+      // state.exerciseLoading = action.payload
+      const index = state.exerciseArray.findIndex(e => e._id === action.payload._id)
+      
+      if (index !== -1) state.exerciseArray[index].loading = action.payload.loading
     },
     add_exercise: (state, action) => {
       state.exerciseArray = [action.payload, ...state.exerciseArray]
@@ -28,8 +36,7 @@ export const exerciseSlice = createSlice({
     update_exercises: (state, action) => {
       const index = state.exerciseArray.findIndex(e => e._id === action.payload._id)
       
-      if (index !== -1) 
-        state.exerciseArray[index] = action.payload
+      if (index !== -1) state.exerciseArray[index] = action.payload
     }    
   }
 })

@@ -20,7 +20,7 @@ const useStateSelectors = () => {
   // exercise
   const exerciseArray = useSelector(state => state.exercise.exerciseArray)
   const exerciseId = useSelector(state => state.exercise.exerciseId)
-  const exerciseLoading = useSelector(state => state.exercise.exerciseLoading)
+  // const exerciseLoading = useSelector(state => state.exercise.exerciseLoading)
 
   // exerciseForm
   const exerciseForm = useSelector(state => state.exerciseForm)
@@ -44,7 +44,7 @@ const useStateSelectors = () => {
     accessToken,
     exerciseArray,
     exerciseId,
-    exerciseLoading,
+    // exerciseLoading,
     exerciseForm,
     displayForm,
     editExerciseForm,

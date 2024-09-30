@@ -17,7 +17,11 @@ const useDeleteExercise = (exercise) => {
   const {axiosInstance} = useAxiosInstance()
 
   const deleteExercise = async () => {
-    dispatch(set_exercise_loading(true))
+    // dispatch(set_exercise_loading(true))
+    dispatch(set_exercise_loading({
+      _id: exercise._id,
+      loading: true
+    }))
 
     try {
       const res = await axiosInstance({
@@ -39,7 +43,11 @@ const useDeleteExercise = (exercise) => {
       const errorMessage = error.response.data.error 
       dispatch(set_app_error(errorMessage))
     } finally {
-      dispatch(set_exercise_loading(false))
+      // dispatch(set_exercise_loading(false))
+      dispatch(set_exercise_loading({
+        _id: exercise._id,
+        loading: false
+      }))
     }
   }
 
