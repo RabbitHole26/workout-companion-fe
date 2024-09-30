@@ -10,6 +10,9 @@ import useStateSelectors from "../../useStateSelectors"
 import useClearExerciseFormFields from "../../useClearExerciseFormFields"
 import useAxiosInstance from "../../useAxiosInstance"
 
+// model
+import Exercise from "../../../models/exerciseModel"
+
 // util
 import printLogInDevMode from "../../../utils/printLogInDevMode"
 
@@ -29,11 +32,11 @@ const useUpdateExercise = () => {
         headers: {
           Authorization: `Bearer ${accessToken}`
         },
-        data: {
-          title: exerciseForm.title,
-          reps: exerciseForm.reps,
-          weight: exerciseForm.weight
-        }
+        data: new Exercise(
+          exerciseForm.title,
+          exerciseForm.reps,
+          exerciseForm.weight
+        )
       })
 
       printLogInDevMode('updateExerciseRes: ', res)
