@@ -10,10 +10,9 @@ const DeleteExerciseButton = ({exercise}) => {
   const {
     isLightMode, 
     exerciseArray, 
-    // exerciseLoading, 
     editExerciseForm
   } = useStateSelectors()
-  const {deleteExercise: handleClick} = useDeleteExercise(exercise)
+  const {deleteExercise} = useDeleteExercise()
 
   const btnClass = classNames('absolute top-0 right-0 btn btn-circle btn-sm no-animation mr-2 mt-2', {
     'bg-neutral-100': isLightMode,
@@ -22,6 +21,10 @@ const DeleteExerciseButton = ({exercise}) => {
   })
 
   const isLoading = exerciseArray.find(e => e._id === exercise._id).loading
+
+  const handleClick = async () => {
+    await deleteExercise(exercise)
+  }
 
   return (
     <button 

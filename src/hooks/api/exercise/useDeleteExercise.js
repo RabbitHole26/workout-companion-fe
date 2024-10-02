@@ -11,13 +11,12 @@ import useAxiosInstance from "../../useAxiosInstance"
 // util
 import printLogInDevMode from "../../../utils/printLogInDevMode"
 
-const useDeleteExercise = (exercise) => {
+const useDeleteExercise = () => {
   const dispatch = useDispatch()
   const {accessToken} = useStateSelectors()
   const {axiosInstance} = useAxiosInstance()
 
-  const deleteExercise = async () => {
-    // dispatch(set_exercise_loading(true))
+  const deleteExercise = async (exercise) => {
     dispatch(set_exercise_loading({
       _id: exercise._id,
       loading: true
@@ -43,7 +42,6 @@ const useDeleteExercise = (exercise) => {
       const errorMessage = error.response.data.error 
       dispatch(set_app_error(errorMessage))
     } finally {
-      // dispatch(set_exercise_loading(false))
       dispatch(set_exercise_loading({
         _id: exercise._id,
         loading: false
