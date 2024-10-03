@@ -1,26 +1,20 @@
 import { useDispatch } from "react-redux"
+import axios from "axios"
 
 // reducer
 import { use_logout } from "../../../store/slices/authSlice"
 import { set_app_success } from "../../../store/slices/appSlice"
 import { set_exercise_array } from "../../../store/slices/exerciseSlice"
 
-// hook
-import useAxiosInstance from "../../useAxiosInstance"
-
 // util
 import printLogInDevMode from "../../../utils/printLogInDevMode"
 
 const useLogout = () => {
   const dispatch = useDispatch()
-  const {axiosInstance} = useAxiosInstance()
 
   const logout = async () => {
     try {
-      const res = await axiosInstance({
-        method: 'get',
-        url: '/auth/logout'
-      })
+      const res = await axios.get('/auth/logout')
 
       printLogInDevMode('logoutRes: ', res)
 

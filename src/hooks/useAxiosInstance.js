@@ -18,33 +18,47 @@ const useAxiosInstance = () => {
     withCredentials: true
   })
 
+  // use a plain variable instead of React state variable for immediate update and preventing race conditions
+  // the purpose of the variable is to put subsequent refresh token calls on hold until the current call is completed
+  let isRefreshing = false 
+
   // configure axios instance res interceptors
   axiosInstance.interceptors.response.use(
-    (response) => response,
+    response => response, // proceed with the response if there is no error
     async (error) => {
       if (error.response && error.response.status === 403) {
-        try {
-          // generate new access token
-          const newAccessToken = await refreshToken()
-          printLogInDevMode('newAccessToken: ', newAccessToken)
+        if (!isRefreshing) {
+          try {
+            isRefreshing = true
 
-          // set default headers for this instance
-          axios.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`
+            // generate new access token
+            // refreshToken fn will logout the user if new refresh token wasn't obtained
+            const newAccessToken = await refreshToken()
+            printLogInDevMode('newAccessToken: ', newAccessToken)
 
-          // clone original request
-          const originalRequest = error.config
-          printLogInDevMode('originalRequestHeaders: ', originalRequest.headers)
-
-          // updated original request headers
-          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
-          printLogInDevMode('updatedOriginalRequestHeaders: ', originalRequest.headers)
-
-          // return original request with updated headers
-          return axios(originalRequest)
-        } catch (refreshError) {
-          return Promise.reject(refreshError)
+            if (newAccessToken) {
+              // set default authorization header for this axios instance
+              axios.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`
+    
+              // clone original request
+              const originalRequest = error.config
+              printLogInDevMode('originalRequestHeaders: ', originalRequest.headers)
+    
+              // updated original request headers
+              originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
+              printLogInDevMode('updatedOriginalRequestHeaders: ', originalRequest.headers)
+    
+              // return original request with updated headers
+              return axios(originalRequest)
+            }
+          } catch (refreshError) {
+            printLogInDevMode('refreshTokenInnerErr (try/catch block): ', refreshError)
+          } finally {
+            isRefreshing = false
+          }
         }
       }
+      printLogInDevMode('refreshTokenErr (if block): ', error)
       return Promise.reject(error)
     }
   )
