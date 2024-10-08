@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
 // hook
 import useSetInputClass from "../../hooks/useSetInputClass"
 import useResetPassword from "../../hooks/api/auth/useResetPassword"
+import useVerifyPasswordToken from "../../hooks/api/auth/useVerifyPasswordToken"
 
 // component
 import SubmitFormButton from "../../components/buttons/SubmitFormButton"
@@ -12,6 +14,8 @@ import SubmitFormButton from "../../components/buttons/SubmitFormButton"
 const PasswordReset = () => {
   const {setInputClass} = useSetInputClass()
   const {resetPassword} = useResetPassword()
+  const {verifyPasswordToken} = useVerifyPasswordToken()
+  const navigate = useNavigate()
 
   // local state
   const [password, setPassword] = useState('')
@@ -24,16 +28,29 @@ const PasswordReset = () => {
 
   // access url params (password reset link) to extract variables
   const params = new URLSearchParams(window.location.search)
-  const data = {
+  let data = {
     token: params.get('token'),
-    uuid: params.get('uuid'),
-    password: password,
-    confirmPassword: confirmPassword
+    uuid: params.get('uuid')
   }
+
+  useEffect(() => {
+    const validateToken = async () => {
+      // redirect user to forgot-password if the token param is not present in the URL
+      if (!data.token) return navigate('/forgot-password')
+
+      await verifyPasswordToken(data)
+    }
+
+    validateToken()
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await resetPassword(data)
+    await resetPassword({
+      ...data, 
+      password: password, 
+      confirmPassword: confirmPassword
+    }) // call the resetPassword fn with data object complimented with password and confirmPassword
   }
 
   return (
