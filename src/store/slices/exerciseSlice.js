@@ -16,6 +16,8 @@ export const exerciseSlice = createSlice({
       if (arr.length > 0) {
         const insertLoading = arr.map(e => e = {...e, loading: false}) // add loading prop to each item in the array
         state.exerciseArray = insertLoading
+      } else {
+        state.exerciseArray = arr
       }
     },
     set_exercise_id: (state, action) => {
