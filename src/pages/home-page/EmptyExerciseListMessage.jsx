@@ -16,7 +16,7 @@ const EmptyExerciseListMessage = () => {
     <div className={wrapperClass}>
       <>
         {isMobile && exerciseArray.length === 0 &&
-          <span className="h-custom-max-mobile flex gap-2 items-center text-xl">
+          <span className="h-custom-nav64 flex gap-2 items-center text-xl">
             <span>
               Tap
             </span>

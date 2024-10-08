@@ -18,8 +18,8 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState('')
 
   const forgotPasswordWrapper = classNames('flex flex-col justify-center mx-3', {
-    'h-custom-max-desktop-mobile-lg': !isMobile,
-    'h-custom-max-mobile lg:h-custom-max-desktop-mobile-lg': isMobile
+    'h-custom-nav80': !isMobile,
+    'h-custom-nav64 lg:h-custom-nav80': isMobile
   })
 
   const handleSubmit = async (e) => {

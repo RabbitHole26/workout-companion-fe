@@ -12,8 +12,8 @@ export default {
         "custom-black": "rgb(18,18,18)"
       },
       height: {
-        "custom-max-desktop-mobile-lg": "calc(100vh - 80px)",
-        "custom-max-mobile": "calc(100vh - 64px - 72px)"
+        "custom-nav80": "calc(100vh - 80px)",
+        "custom-nav64": "calc(100vh - 64px - 72px)"
       }
     },
   },
