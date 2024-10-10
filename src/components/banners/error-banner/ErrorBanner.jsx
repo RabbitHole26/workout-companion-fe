@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
 // reducer
@@ -27,11 +26,6 @@ const ErrorBanner = () => {
     'p-3': appError
   })
 
-  const pClass = classNames('text-center', {
-    'text-lg': isMobile,
-    'text-xl': !isMobile
-  })
-
   if(!isArray(appError)) {
     setTimeout(() => {
       dispatch(set_app_error(''))
@@ -42,7 +36,7 @@ const ErrorBanner = () => {
     <div className={bannerWrapperClass}>
       <>
         {appError && isArray(appError) &&
-          <p className={pClass}>
+          <p className='text-center text-lg xl:text-xl'>
             Ups... something went wrong!
           </p>
         }
@@ -86,7 +80,7 @@ const ErrorBanner = () => {
       </>
       <>
         {appError && !isArray(appError) &&
-          <p className={pClass}>
+          <p className='text-center text-lg xl:text-xl'>
             {appError}
           </p>
         }

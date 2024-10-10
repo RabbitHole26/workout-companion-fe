@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
 // hook
+import useMediaQueries from "../../hooks/useMediaQueries"
 import useSetInputClass from "../../hooks/useSetInputClass"
 import useRequestPasswordReset from "../../hooks/api/auth/useRequestPasswordReset"
 
@@ -11,6 +11,7 @@ import SubmitFormButton from "../../components/buttons/SubmitFormButton"
 import PageLink from "../../components/page-link/PageLink"
 
 const ForgotPassword = () => {
+  const {isMobile, isDesktop} = useMediaQueries()
   const {setInputClass} = useSetInputClass()
   const {requestPasswordReset} = useRequestPasswordReset()
 
@@ -18,7 +19,7 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState('')
 
   const forgotPasswordWrapper = classNames('flex flex-col justify-center mx-3', {
-    'h-custom-nav80': !isMobile,
+    'h-custom-nav80': isDesktop,
     'h-custom-nav64 lg:h-custom-nav80': isMobile
   })
 

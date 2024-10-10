@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCaretDown, faCaretUp, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch } from "react-redux"
-import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
 // reducer
@@ -12,16 +11,14 @@ import {
 
 // hook
 import useStateSelectors from "../../hooks/useStateSelectors.js"
+import useMediaQueries from "../../hooks/useMediaQueries.js"
 import useClearExerciseFormFields from "../../hooks/useClearExerciseFormFields.js"
 
 const ShowExerciseFormButton = () => {
   const dispatch = useDispatch()
   const {isLightMode, displayForm} = useStateSelectors()
+  const {isMobile, isDesktop} = useMediaQueries()
   const {clearExerciseFormFields} = useClearExerciseFormFields()
-
-  const btnWrapperClass = classNames('', {
-    'pt-2 pb-2': !isMobile
-  })
 
   const desktopBtnClass = classNames('no-animation btn border-2 btn-wide', {
     'border-neutral-400': isLightMode,
@@ -35,7 +32,7 @@ const ShowExerciseFormButton = () => {
   }
 
   return (
-    <div className={btnWrapperClass}>
+    <div className={`${isDesktop ? 'pb-2' : ''}`}>
       <>
         {isMobile &&
           <button
@@ -47,7 +44,7 @@ const ShowExerciseFormButton = () => {
         }
       </>
       <>
-        {!isMobile &&
+        {isDesktop &&
           <div className="flex justify-center">
             <button
               className={desktopBtnClass}

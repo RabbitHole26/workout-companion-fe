@@ -1,8 +1,8 @@
 import { useLocation } from 'react-router-dom'
-import { isMobile } from 'react-device-detect'
 
 // hook
 import useStateSelectors from '../hooks/useStateSelectors'
+import useMediaQueries from '../hooks/useMediaQueries'
 
 // components
 import Navbar from '../components/navbar/Navbar'
@@ -12,6 +12,7 @@ import ShowExerciseFormButton from '../components/buttons/ShowExerciseFormButton
 
 const AppLayout = ({children}) => {
   const {appError, appSuccess, homeLoading, userData} = useStateSelectors()
+  const {isMobile} = useMediaQueries()
   const location = useLocation()
   
   return (

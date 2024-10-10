@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux"
-import { isMobile } from "react-device-detect"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import classNames from "classnames"
@@ -19,7 +18,7 @@ const CloseFormButton = () => {
 
   const btnClass = classNames('btn btn-xs btn-square', {
     'bg-stone-800': !isLightMode,
-    'hover:bg-neutral-400': isLightMode && !isMobile
+    'hover:bg-neutral-400': isLightMode
   })
   
   const handleClick = () => {

@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux"
-import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
 // reducer
@@ -7,6 +6,7 @@ import { set_signup_username, set_signup_email, set_signup_password, set_signup_
 
 // hook
 import useStateSelectors from "../../hooks/useStateSelectors"
+import useMediaQueries from "../../hooks/useMediaQueries"
 import useSetInputClass from "../../hooks/useSetInputClass"
 import useSignup from "../../hooks/api/auth/useSignup"
 
@@ -17,12 +17,13 @@ import PageLink from "../../components/page-link/PageLink"
 const Signup = () => {
   const dispatch = useDispatch()
   const {signupForm} = useStateSelectors()
+  const {isMobile, isDesktop} = useMediaQueries()
   const {signup} = useSignup()
   const {setInputClass} = useSetInputClass()
 
   const signupWrapper = classNames('flex flex-col justify-center', {
-    'h-custom-nav80': !isMobile,
-    'h-custom-nav64 lg:h-custom-nav80': isMobile
+    'h-custom-nav80': isDesktop,
+    'h-custom-nav64': isMobile
   })
 
   const handleSubmit = async (e) => {
@@ -45,7 +46,6 @@ const Signup = () => {
           <input 
             className={setInputClass('username')}
             type="text"
-            // placeholder="Username"
             onChange={e => dispatch(set_signup_username(e.target.value))}
             value={signupForm.username}
           />
@@ -57,7 +57,6 @@ const Signup = () => {
           <input 
             className={setInputClass('email')}
             type="text"
-            // placeholder="Email"
             onChange={e => dispatch(set_signup_email(e.target.value))}
             value={signupForm.email}
           />
@@ -69,7 +68,6 @@ const Signup = () => {
           <input 
             className={setInputClass('password')}
             type="password"
-            // placeholder="Password"
             onChange={e => dispatch(set_signup_password(e.target.value))}
             value={signupForm.password}
           />
@@ -81,7 +79,6 @@ const Signup = () => {
           <input 
             className={setInputClass('confirmPassword')}
             type="password"
-            // placeholder="Confirm password"
             onChange={e => dispatch(set_signup_confirm_password(e.target.value))}
             value={signupForm.confirmPassword}
           />

@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux"
-import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
 // reducer
@@ -27,7 +26,7 @@ const SuccessBanner = () => {
     <>
       {appSuccess &&
         <div className={bannerWrapperClass}>
-          <p className={isMobile ? 'text-lg' : 'text-xl'}>
+          <p className="text-lg xl:text-xl">
             {appSuccess}
           </p>
           <>

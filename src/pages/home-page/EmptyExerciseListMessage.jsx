@@ -1,13 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
-import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
 // hook
 import useStateSelectors from "../../hooks/useStateSelectors"
+import useMediaQueries from "../../hooks/useMediaQueries"
 
 const EmptyExerciseListMessage = () => {
   const {exerciseArray} = useStateSelectors()
+  const {isMobile} = useMediaQueries()
 
   const wrapperClass = classNames('flex justify-center items-center', {
   })

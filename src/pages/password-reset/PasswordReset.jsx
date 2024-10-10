@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
 // hook
+import useMediaQueries from "../../hooks/useMediaQueries"
 import useSetInputClass from "../../hooks/useSetInputClass"
 import useResetPassword from "../../hooks/api/auth/useResetPassword"
 import useVerifyPasswordToken from "../../hooks/api/auth/useVerifyPasswordToken"
@@ -12,6 +12,7 @@ import useVerifyPasswordToken from "../../hooks/api/auth/useVerifyPasswordToken"
 import SubmitFormButton from "../../components/buttons/SubmitFormButton"
 
 const PasswordReset = () => {
+  const {isMobile, isDesktop} = useMediaQueries()
   const {setInputClass} = useSetInputClass()
   const {resetPassword} = useResetPassword()
   const {verifyPasswordToken} = useVerifyPasswordToken()
@@ -22,8 +23,8 @@ const PasswordReset = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
 
   const resetPasswordWrapper = classNames('flex flex-col justify-center mx-3', {
-    'h-custom-nav80': !isMobile,
-    'h-custom-nav64 lg:h-custom-nav80': isMobile
+    'h-custom-nav80': isDesktop,
+    'h-custom-nav64': isMobile
   })
 
   // access url params (password reset link) to extract variables

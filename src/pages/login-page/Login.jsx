@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux"
-import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
 // reducer
@@ -7,6 +6,7 @@ import { set_login_email, set_login_password } from "../../store/slices/forms/lo
 
 // hook
 import useStateSelectors from "../../hooks/useStateSelectors"
+import useMediaQueries from "../../hooks/useMediaQueries"
 import useSetInputClass from "../../hooks/useSetInputClass"
 import useLogin from "../../hooks/api/auth/useLogin"
 
@@ -14,16 +14,16 @@ import useLogin from "../../hooks/api/auth/useLogin"
 import SubmitFormButton from "../../components/buttons/SubmitFormButton"
 import PageLink from "../../components/page-link/PageLink"
 
-
 const Login = () => {
   const dispatch = useDispatch()
   const {loginForm} = useStateSelectors()
+  const {isMobile, isDesktop} = useMediaQueries()
   const {login} = useLogin()
   const {setInputClass} = useSetInputClass()
 
   const loginWrapper = classNames('flex flex-col justify-center', {
-    'h-custom-nav80': !isMobile,
-    'h-custom-nav64 lg:h-custom-nav80': isMobile
+    'h-custom-nav80': isDesktop,
+    'h-custom-nav64': isMobile
   })
 
   const handleSubmit = async (e) => {
@@ -46,7 +46,6 @@ const Login = () => {
           <input 
             className={setInputClass('email')}
             type="text"
-            // placeholder="email"
             onChange={e => dispatch(set_login_email(e.target.value))}
             value={loginForm.email}
           />
@@ -58,7 +57,6 @@ const Login = () => {
           <input 
             className={setInputClass('password')}
             type="password"
-            // placeholder="Password"
             onChange={e => dispatch(set_login_password(e.target.value))}
             value={loginForm.password}
           />

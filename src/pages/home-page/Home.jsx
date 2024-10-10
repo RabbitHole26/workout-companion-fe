@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
 // reducer
@@ -8,8 +7,8 @@ import { set_home_loading } from "../../store/slices/homeSlice"
 
 // hook
 import useStateSelectors from "../../hooks/useStateSelectors"
-// import useFetchExercises from "../../hooks/api/exercise/useFetchExercises"
 import useSearchExercises from "../../hooks/api/search/useSearchExercises"
+import useMediaQueries from "../../hooks/useMediaQueries"
 
 // component
 import ShowExerciseFormButton from "../../components/buttons/ShowExerciseFormButton"
@@ -20,28 +19,18 @@ import ExerciseForm from "../../components/exercise-form/ExerciseForm"
 
 const Home = () => {
   const dispatch = useDispatch()
-  // const {fetchExercises} = useFetchExercises()
-  const {searchExercises} = useSearchExercises()
   const {homeLoading, userData, exerciseArray, displayForm} = useStateSelectors()
+  const {searchExercises} = useSearchExercises()
+  const {isDesktop} = useMediaQueries()
 
   // local state
   const [exercisesFetched, setExercisesFetched] = useState(false)
 
   const homeWrapperClass = classNames('relative', {
     'flex justify-center items-center': homeLoading,
-    // 'bg-red-300': ENV_MODE === 'dev'
-  })
-
-  const exerciseListWrapperClass = classNames('px-2 pb-2', {
-    'pt-2': isMobile && !displayForm,
-  })
-
-  const exerciseFormWrapperClass = classNames('px-2 sticky top-[64px] w-full z-[1]', {
-    'pt-2': isMobile && displayForm
   })
 
   useEffect(() => {
-    // (async () => {if (userData) fetchExercises()})()
     (async () => {
       if (userData) {
         dispatch(set_home_loading(true))
@@ -63,9 +52,9 @@ const Home = () => {
       <>
         {!homeLoading && userData &&
           <>
-            <div className={exerciseFormWrapperClass}>
+            <div className="px-2 pt-2 sticky top-[64px] w-full z-[1]">
               <>
-                {!isMobile && userData &&
+                {isDesktop && userData &&
                   <ShowExerciseFormButton />
                 }
               </>
@@ -76,23 +65,13 @@ const Home = () => {
               </>
             </div>
             <>
-              {/* {exerciseArray.length === 0 && !displayForm
-                ? (
-                    <EmptyExerciseListMessage />
-                  )
-                : (
-                    <div className={exerciseListWrapperClass}>
-                      <ExerciseList />
-                    </div>
-                  )
-              } */}
               {exercisesFetched 
                 ? (exerciseArray.length === 0 && !displayForm
                     ? (
                         <EmptyExerciseListMessage />
                       )
                     : (
-                        <div className={exerciseListWrapperClass}>
+                        <div className="px-2 pb-2">
                           <ExerciseList />
                         </div>
                       )

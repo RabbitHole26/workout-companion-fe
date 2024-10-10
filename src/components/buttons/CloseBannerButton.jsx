@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch } from "react-redux"
-import { isMobile } from "react-device-detect"
 import classNames from "classnames"
 
 // reducer
@@ -22,14 +21,13 @@ const CloseBannerButton = ({
   const {isLightMode, appError, appSuccess} = useStateSelectors()
 
   const btnWrapperClass = classNames('absolute right-3', {
-    'top-7': isMobile && showErrorDetails,
-    'top-[30px]': !isMobile && showErrorDetails,
+    'top-7': showErrorDetails,
     'top-1/2 transform -translate-y-1/2': !showErrorDetails || appSuccess
   })
 
   const btnClass = classNames('btn btn-xs btn-square', {
     'bg-stone-800': !isLightMode,
-    'hover:bg-neutral-400': isLightMode && !isMobile
+    'hover:bg-neutral-400': isLightMode
   })
 
   const handleClick = () => {
