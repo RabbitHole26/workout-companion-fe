@@ -40,6 +40,7 @@ const Search = () => {
     return () => {
       clearTimeout(debouncedTimeoutRef.current)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm])
 
   return (
