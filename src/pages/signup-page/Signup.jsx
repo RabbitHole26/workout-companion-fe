@@ -17,13 +17,14 @@ import PageLink from "../../components/page-link/PageLink"
 const Signup = () => {
   const dispatch = useDispatch()
   const {signupForm} = useStateSelectors()
-  const {isMobile, isDesktop} = useMediaQueries()
+  const {isMobile, isDesktop, isMobileHeight} = useMediaQueries()
   const {signup} = useSignup()
   const {setInputClass} = useSetInputClass()
 
   const signupWrapper = classNames('flex flex-col justify-center', {
     'h-custom-nav80': isDesktop,
-    'h-custom-nav64': isMobile
+    'h-custom-nav64': isMobile,
+    'mt-8': isMobileHeight
   })
 
   const handleSubmit = async (e) => {
