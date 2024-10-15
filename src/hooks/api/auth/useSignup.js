@@ -14,7 +14,7 @@ import {
   set_signup_password,
   set_signup_confirm_password
 } from "../../../store/slices/forms/signupFormSlice"
-import { set_user_data } from "../../../store/slices/authSlice"
+import { set_access_token, set_user_data } from "../../../store/slices/authSlice"
 
 // hook
 import useStateSelectors from "../../useStateSelectors"
@@ -45,6 +45,7 @@ const useSignup = () => {
       printLogInDevMode('signupRes', res)
 
       if (res.status === 201) {
+        dispatch(set_access_token(res.data.accessToken))
         dispatch(set_user_data({
           username: res.data.username,
           avatarUrl: res.data.avatarUrl
