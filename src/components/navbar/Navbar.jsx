@@ -25,7 +25,9 @@ const location = useLocation()
 
   const h1Class = classNames('btn', {
     'btn-md lg:btn-lg': isMobile,
-    'btn-outline btn-lg no-animation': isDesktop
+    'btn-outline btn-lg no-animation': isDesktop,
+    'hover:bg-neutral-800': isLightMode,
+    'hover:bg-neutral-500 hover:border-0': !isLightMode
   })
 
   const ulClass = classNames('menu menu-sm gap-1 dropdown-content rounded-box z-[2] mt-3 p-2 shadow', {
