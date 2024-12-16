@@ -8,7 +8,11 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: process.env.VITE_BASE_URL,
-        changeOrigin: true
+        changeOrigin: true,
+        secure: true,
+        cookieDomainRewrite: {
+          "*": "" // rewrite domain to enable cross-domain cookies
+        }
       }
     }
   }
