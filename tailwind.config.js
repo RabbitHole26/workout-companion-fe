@@ -13,7 +13,8 @@ export default {
       },
       height: {
         "custom-nav80": "calc(100vh - 80px)",
-        "custom-nav64": "calc(100vh - 64px - 72px)"
+        // "custom-nav64": "calc(100vh - 64px - 72px)"
+        "custom-nav64": "calc(100vh - 64px - 80px)"
       }
     },
   },
