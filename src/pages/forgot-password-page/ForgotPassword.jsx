@@ -11,17 +11,21 @@ import SubmitFormButton from "../../components/buttons/SubmitFormButton"
 import PageLink from "../../components/page-link/PageLink"
 
 const ForgotPassword = () => {
-  const {isMobile, isDesktop} = useMediaQueries()
-  const {setInputClass} = useSetInputClass()
-  const {requestPasswordReset} = useRequestPasswordReset()
+  const { isMobile, isDesktop } = useMediaQueries()
+  const { setInputClass } = useSetInputClass()
+  const { requestPasswordReset } = useRequestPasswordReset()
 
   // local state
   const [email, setEmail] = useState('')
 
-  const forgotPasswordWrapper = classNames('flex flex-col justify-center mx-3', {
-    'h-custom-nav80': isDesktop,
-    'h-custom-nav64 lg:h-custom-nav80': isMobile
-  })
+  const forgotPasswordWrapper = classNames(
+    'flex flex-col justify-center mx-3',
+    'xl:w-[1024px]',
+    {
+      'h-custom-nav80': isDesktop,
+      'h-custom-nav64 lg:h-custom-nav80': isMobile
+    }
+  )
 
   const handleSubmit = async (e) => {
     e.preventDefault()

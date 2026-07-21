@@ -7,10 +7,10 @@ import useStateSelectors from "../../hooks/useStateSelectors"
 import useMediaQueries from "../../hooks/useMediaQueries"
 
 const EmptyExerciseListMessage = () => {
-  const {exerciseArray} = useStateSelectors()
-  const {isMobile} = useMediaQueries()
+  const { exerciseArray } = useStateSelectors()
+  const { isMobile } = useMediaQueries()
 
-  const wrapperClass = classNames('flex justify-center items-center', {
+  const wrapperClass = classNames('flex justify-center items-center', 'xl:w-[1024px]', {
   })
 
   return (

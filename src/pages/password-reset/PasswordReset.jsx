@@ -12,20 +12,24 @@ import useVerifyPasswordToken from "../../hooks/api/auth/useVerifyPasswordToken"
 import SubmitFormButton from "../../components/buttons/SubmitFormButton"
 
 const PasswordReset = () => {
-  const {isMobile, isDesktop} = useMediaQueries()
-  const {setInputClass} = useSetInputClass()
-  const {resetPassword} = useResetPassword()
-  const {verifyPasswordToken} = useVerifyPasswordToken()
+  const { isMobile, isDesktop } = useMediaQueries()
+  const { setInputClass } = useSetInputClass()
+  const { resetPassword } = useResetPassword()
+  const { verifyPasswordToken } = useVerifyPasswordToken()
   const navigate = useNavigate()
 
   // local state
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  const resetPasswordWrapper = classNames('flex flex-col justify-center mx-3', {
-    'h-custom-nav80': isDesktop,
-    'h-custom-nav64': isMobile
-  })
+  const resetPasswordWrapper = classNames(
+    'flex flex-col justify-center mx-3',
+    'xl:w-[1024px]',
+    {
+      'h-custom-nav80': isDesktop,
+      'h-custom-nav64': isMobile
+    }
+  )
 
   // access url params (password reset link) to extract variables
   const params = new URLSearchParams(window.location.search)
@@ -43,14 +47,14 @@ const PasswordReset = () => {
     }
 
     validateToken()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     await resetPassword({
-      ...data, 
-      password: password, 
+      ...data,
+      password: password,
       confirmPassword: confirmPassword
     }) // call the resetPassword fn with data object complimented with password and confirmPassword
   }

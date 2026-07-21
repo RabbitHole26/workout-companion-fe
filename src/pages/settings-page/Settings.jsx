@@ -4,7 +4,7 @@ import UploadAvatar from "../../components/upload-avatar/UploadAvatar"
 const Settings = () => {
   return (
     <div>
-      <div className="flex justify-center my-10">
+      <div className="flex justify-center my-10 xl:w-[1024px]">
         <h2 className="text-2xl">Settings</h2>
       </div>
       <UploadAvatar />
