@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 // import { useDispatch } from "react-redux"
 
 // reducer
@@ -22,7 +22,7 @@ const NavbarLink = (props) => {
   }
 
   return (
-    <Link 
+    <Link
       to={props.to}
       onClick={handleClick}
       className="text-lg"

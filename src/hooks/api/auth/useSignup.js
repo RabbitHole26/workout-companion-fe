@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router"
 import axios from "axios"
 
 // reducer
-import { 
+import {
   set_app_error,
   set_app_success,
   set_app_loading
@@ -28,7 +28,7 @@ import printLogInDevMode from "../../../utils/printLogInDevMode"
 const useSignup = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const {signupForm} = useStateSelectors()
+  const { signupForm } = useStateSelectors()
 
   const signup = async () => {
     // dispatch(set_error(null))
@@ -60,14 +60,14 @@ const useSignup = () => {
       }
     } catch (error) {
       printLogInDevMode('signupErr: ', error)
-      const errorMessage = error.response.data.error 
+      const errorMessage = error.response.data.error
       dispatch(set_app_error(errorMessage))
     } finally {
       dispatch(set_app_loading(false))
     }
   }
 
-  return {signup}
+  return { signup }
 }
 
 export default useSignup

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router"
 import { useDispatch } from "react-redux"
 
 // reducer
@@ -35,7 +35,7 @@ const useVerifyPasswordToken = () => {
     }
   }
 
-  return {verifyPasswordToken}
+  return { verifyPasswordToken }
 }
 
 export default useVerifyPasswordToken

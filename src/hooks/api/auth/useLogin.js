@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router"
 import axios from "axios"
 
 // hook
 import useStateSelectors from "../../useStateSelectors"
-import { 
-  set_app_error, 
+import {
+  set_app_error,
   set_app_success,
   set_app_loading
 } from "../../../store/slices/appSlice"
@@ -18,11 +18,11 @@ import printLogInDevMode from "../../../utils/printLogInDevMode"
 const useLogin = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const {loginForm} = useStateSelectors()
+  const { loginForm } = useStateSelectors()
 
   const login = async () => {
     dispatch(set_app_loading(true))
-    
+
     try {
       const res = await axios.post('/auth/login', {
         email: loginForm.email,
@@ -30,7 +30,7 @@ const useLogin = () => {
       })
 
       printLogInDevMode('loginRes: ', res)
-  
+
       if (res.status === 200) {
         dispatch(set_user_data({
           username: res.data.username,
@@ -45,14 +45,14 @@ const useLogin = () => {
       }
     } catch (error) {
       printLogInDevMode('loginErr: ', error)
-      const errorMessage = error.response.data.error 
+      const errorMessage = error.response.data.error
       dispatch(set_app_error(errorMessage))
     } finally {
       dispatch(set_app_loading(false))
     }
   }
 
-  return {login}
+  return { login }
 }
 
 export default useLogin

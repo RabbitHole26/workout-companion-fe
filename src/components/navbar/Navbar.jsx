@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router"
 import classNames from "classnames"
 
 // hook
@@ -14,9 +14,9 @@ import GuestList from "./lists/GuestList"
 import Search from "./Search"
 
 const Navbar = () => {
-const {isLightMode, userData} = useStateSelectors()
-const {isMobile, isDesktop, Desktop} = useMediaQueries()
-const location = useLocation()
+  const { isLightMode, userData } = useStateSelectors()
+  const { isMobile, isDesktop, Desktop } = useMediaQueries()
+  const location = useLocation()
 
   const navWrapperClass = classNames('sticky top-0 flex flex-row justify-between items-center p-2 z-[2]', {
     'bg-neutral-300': isLightMode,
@@ -42,7 +42,7 @@ const location = useLocation()
         <h1 className={h1Class}>
           <div className="flex items-center gap-2">
             <Desktop><span>Workout Companion</span></Desktop>
-            <Emoji 
+            <Emoji
               symbol='💪'
               label='Flexed biceps'
               className='text-2xl'
