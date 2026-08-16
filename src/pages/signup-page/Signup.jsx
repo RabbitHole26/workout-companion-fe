@@ -16,16 +16,20 @@ import PageLink from "../../components/page-link/PageLink"
 
 const Signup = () => {
   const dispatch = useDispatch()
-  const {signupForm} = useStateSelectors()
-  const {isMobile, isDesktop, isMobileHeight} = useMediaQueries()
-  const {signup} = useSignup()
-  const {setInputClass} = useSetInputClass()
+  const { signupForm } = useStateSelectors()
+  const { isMobile, isDesktop, isMobileHeight } = useMediaQueries()
+  const { signup } = useSignup()
+  const { setInputClass } = useSetInputClass()
 
-  const signupWrapper = classNames('flex flex-col justify-center', {
-    'h-custom-nav80': isDesktop,
-    'h-custom-nav64': isMobile,
-    'mt-8': isMobileHeight
-  })
+  const signupWrapper = classNames(
+    'flex flex-col justify-center',
+    'xl:w-[1024px]',
+    {
+      'h-custom-nav80': isDesktop,
+      'h-custom-nav64': isMobile,
+      'mt-8': isMobileHeight
+    }
+  )
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -37,14 +41,14 @@ const Signup = () => {
       <div className="flex justify-center mb-6">
         <h2 className="text-2xl">Sign up</h2>
       </div>
-      <form 
+      <form
         className="mx-3 flex flex-col"
         onSubmit={handleSubmit}
       >
         {/* USERNAME */}
         <div className="flex flex-col">
           <label className="m-2">Username:</label>
-          <input 
+          <input
             className={setInputClass('username')}
             type="text"
             onChange={e => dispatch(set_signup_username(e.target.value))}
@@ -55,7 +59,7 @@ const Signup = () => {
         {/* EMAIL */}
         <div className="flex flex-col">
           <label className="m-2">Email:</label>
-          <input 
+          <input
             className={setInputClass('email')}
             type="text"
             onChange={e => dispatch(set_signup_email(e.target.value))}
@@ -66,7 +70,7 @@ const Signup = () => {
         {/* PASSWORD */}
         <div className="flex flex-col">
           <label className="m-2">Password:</label>
-          <input 
+          <input
             className={setInputClass('password')}
             type="password"
             onChange={e => dispatch(set_signup_password(e.target.value))}
@@ -77,7 +81,7 @@ const Signup = () => {
         {/* CONFIRM PASSWORD */}
         <div className="flex flex-col">
           <label className="m-2">Confirm password:</label>
-          <input 
+          <input
             className={setInputClass('confirmPassword')}
             type="password"
             onChange={e => dispatch(set_signup_confirm_password(e.target.value))}

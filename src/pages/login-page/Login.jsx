@@ -16,15 +16,19 @@ import PageLink from "../../components/page-link/PageLink"
 
 const Login = () => {
   const dispatch = useDispatch()
-  const {loginForm} = useStateSelectors()
-  const {isMobile, isDesktop} = useMediaQueries()
-  const {login} = useLogin()
-  const {setInputClass} = useSetInputClass()
+  const { loginForm } = useStateSelectors()
+  const { isMobile, isDesktop } = useMediaQueries()
+  const { login } = useLogin()
+  const { setInputClass } = useSetInputClass()
 
-  const loginWrapper = classNames('flex flex-col justify-center', {
-    'h-custom-nav80': isDesktop,
-    'h-custom-nav64': isMobile
-  })
+  const loginWrapper = classNames(
+    'flex flex-col justify-center',
+    'xl:w-[1024px]',
+    {
+      'h-custom-nav80': isDesktop,
+      'h-custom-nav64': isMobile
+    }
+  )
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -33,17 +37,21 @@ const Login = () => {
 
   return (
     <div className={loginWrapper}>
-      <div className="flex justify-center mb-6">
-        <h2 className="text-2xl">Log in</h2>
-      </div>
-      <form 
+      {/* <div
+        className="flex justify-center mb-6"
+      > */}
+      <h2 className="text-2xl text-center mb-6">Log in</h2>
+      {/* </div> */}
+      <form
         className="mx-3 flex flex-col"
         onSubmit={handleSubmit}
       >
         {/* EMAIL */}
-        <div className="flex flex-col">
+        <div
+          className="flex flex-col"
+        >
           <label className="m-2">Email:</label>
-          <input 
+          <input
             className={setInputClass('email')}
             type="text"
             onChange={e => dispatch(set_login_email(e.target.value))}
@@ -52,9 +60,11 @@ const Login = () => {
         </div>
 
         {/* PASSWORD */}
-        <div className="flex flex-col">
+        <div
+          className="flex flex-col"
+        >
           <label className="m-2">Password:</label>
-          <input 
+          <input
             className={setInputClass('password')}
             type="password"
             onChange={e => dispatch(set_login_password(e.target.value))}
@@ -63,7 +73,9 @@ const Login = () => {
         </div>
 
         {/* SUBMIT BUTTON */}
-        <div className="flex flex-col items-center gap-5 mt-12 mb-5">
+        <div
+          className="flex flex-col items-center gap-5 mt-12 mb-5"
+        >
           <SubmitFormButton label='Log in' />
           <PageLink to='/forgot-password' label='Forgot password' className='justify-normal' />
           <PageLink to='/signup' label='Sign up' className='justify-normal' />

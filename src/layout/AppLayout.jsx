@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
 
 // hook
 import useStateSelectors from '../hooks/useStateSelectors'
@@ -10,14 +10,14 @@ import ErrorBanner from '../components/banners/error-banner/ErrorBanner'
 import SuccessBanner from '../components/banners/success-banner/SuccessBanner'
 import ShowExerciseFormButton from '../components/buttons/ShowExerciseFormButton'
 
-const AppLayout = ({children}) => {
-  const {appError, appSuccess, homeLoading, userData} = useStateSelectors()
-  const {isMobile} = useMediaQueries()
+const AppLayout = ({ children }) => {
+  const { appError, appSuccess, homeLoading, userData } = useStateSelectors()
+  const { isMobile } = useMediaQueries()
   const location = useLocation()
-  
+
   return (
     <div className="relative min-h-screen flex flex-col">
-      <div className='absolute w-full flex flex-col gap-2 p-2 z-10'>
+      <div className='fixed w-full flex flex-col gap-2 p-2 z-10'>
         <>
           {appError && <ErrorBanner />}
         </>
@@ -26,7 +26,7 @@ const AppLayout = ({children}) => {
         </>
       </div>
       <Navbar />
-      <div className='flex-grow md:mx-[10%]'>
+      <div className='flex-grow md:mx-[10%] xl:mx-auto'>
         {children}
       </div>
       <>

@@ -19,16 +19,19 @@ import ExerciseForm from "../../components/exercise-form/ExerciseForm"
 
 const Home = () => {
   const dispatch = useDispatch()
-  const {homeLoading, userData, exerciseArray, displayForm} = useStateSelectors()
-  const {searchExercises} = useSearchExercises()
-  const {isDesktop} = useMediaQueries()
+  const { homeLoading, userData, exerciseArray, displayForm } = useStateSelectors()
+  const { searchExercises } = useSearchExercises()
+  const { isDesktop } = useMediaQueries()
 
   // local state
   const [exercisesFetched, setExercisesFetched] = useState(false)
 
-  const homeWrapperClass = classNames('relative', {
-    'flex justify-center items-center': homeLoading,
-  })
+  const homeWrapperClass = classNames(
+    'relative',
+    'xl:w-[1024px]',
+    {
+      'flex justify-center items-center': homeLoading,
+    })
 
   useEffect(() => {
     (async () => {
@@ -39,7 +42,7 @@ const Home = () => {
         dispatch(set_home_loading(false))
       }
     })()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData])
 
   return (
@@ -65,20 +68,20 @@ const Home = () => {
               </>
             </div>
             <>
-              {exercisesFetched 
+              {exercisesFetched
                 ? (exerciseArray.length === 0 && !displayForm
-                    ? (
-                        <EmptyExerciseListMessage />
-                      )
-                    : (
-                        <div className="px-2 pb-2">
-                          <ExerciseList />
-                        </div>
-                      )
+                  ? (
+                    <EmptyExerciseListMessage />
                   )
+                  : (
+                    <div className="px-2 pb-2">
+                      <ExerciseList />
+                    </div>
+                  )
+                )
                 : (
-                    null
-                  )
+                  null
+                )
               }
             </>
           </>

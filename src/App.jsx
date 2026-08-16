@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router'
 import './App.css'
 
 // hook
@@ -16,7 +16,7 @@ import PasswordReset from './pages/password-reset/PasswordReset'
 import Settings from './pages/settings-page/Settings'
 
 function App() {
-  const {userData} = useStateSelectors()
+  const { userData } = useStateSelectors()
 
   return (
     <BrowserRouter>
@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route
             path='/'
-            element={userData ? <Home /> : <Navigate to='/login'/>}
+            element={userData ? <Home /> : <Navigate to='/login' />}
           />
           <Route
             path='/signup'
@@ -34,11 +34,11 @@ function App() {
             path='/login'
             element={!userData ? <Login /> : <Navigate to='/' />}
           />
-          <Route 
+          <Route
             path='/forgot-password'
             element={!userData ? <ForgotPassword /> : <Navigate to='/' />}
           />
-          <Route 
+          <Route
             path='/password-reset'
             element={!userData ? <PasswordReset /> : <Navigate to='/' />}
           />

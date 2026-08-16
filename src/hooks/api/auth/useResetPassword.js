@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router"
 import axios from "axios"
 
 // reducer
@@ -14,7 +14,7 @@ const useResetPassword = () => {
 
   const resetPassword = async (data) => {
     dispatch(set_app_loading(true))
-    
+
     try {
       const res = await axios({
         url: '/auth/password-reset',
@@ -38,7 +38,7 @@ const useResetPassword = () => {
     }
   }
 
-  return {resetPassword}
+  return { resetPassword }
 }
 
 export default useResetPassword
